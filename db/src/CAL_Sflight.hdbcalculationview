@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CAL_Sflight" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Sflight.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="com.sap::SFLIGHT">
+    <resourceUri>com.sap::SFLIGHT</resourceUri>
+  </DataSource>
+  <DataSource id="com.sap::SFLIMEAL">
+    <resourceUri>com.sap::SFLIMEAL</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CARRID"/>
+      <viewAttribute id="CONNID"/>
+      <viewAttribute id="FLDATE"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="SEATSMAX" aggregationType="sum"/>
+      <viewAttribute id="MEALNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="com.sap::SFLIGHT">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONNID" source="CONNID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FLDATE" source="SEATSMAX"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="SEATSMAX_F"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SEATSMAX" source="SEATSOCC_F"/>
+    </input>
+    <input node="com.sap::SFLIMEAL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEALNUMBER" source="MEALNUMBER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CARRID" source="CARRID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONNID" source="CONNID"/>
+    </input>
+    <joinAttribute name="CARRID"/>
+    <joinAttribute name="CONNID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CARRID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CARRID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CARRID"/>
+    </attribute>
+    <attribute id="CONNID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONNID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CONNID"/>
+    </attribute>
+    <attribute id="FLDATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="FLDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="FLDATE"/>
+    </attribute>
+    <attribute id="CURRENCY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="MEALNUMBER" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MEALNUMBER"/>
+      <keyMapping columnObjectName="Join_1" columnName="MEALNUMBER"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PRICE" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE"/>
+      <measureMapping columnObjectName="Join_1" columnName="PRICE"/>
+    </measure>
+    <measure id="SEATSMAX" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SEATSMAX"/>
+      <measureMapping columnObjectName="Join_1" columnName="SEATSMAX"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="49" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="com.sap::SFLIGHT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="172"/>
+    </shape>
+    <shape modelObjectName="com.sap::SFLIMEAL" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="180"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
