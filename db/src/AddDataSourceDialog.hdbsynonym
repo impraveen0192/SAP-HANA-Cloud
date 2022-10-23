@@ -1,0 +1,8 @@
+{
+  "com.sap::SAGENCYDATA": {
+    "target": {
+      "object": "SAGENCYDATA",
+      "schema": "SFLIGHT"
+    }
+  }
+}

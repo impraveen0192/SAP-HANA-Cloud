@@ -1,0 +1,14 @@
+{
+  "com.sap::STRAVELAG": {
+    "target": {
+      "object": "STRAVELAG",
+      "schema": "SFLIGHT"
+    }
+  },
+  "com.sap::SAGBOOKDAYS": {
+    "target": {
+      "object": "SAGBOOKDAYS",
+      "schema": "SFLIGHT"
+    }
+  }
+}

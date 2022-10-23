@@ -1,0 +1,19 @@
+_schema-version: "2.1"
+ID: BestRunTravel
+version: 0.0.1
+modules:
+- name: db
+  type: hdb
+  path: db
+  requires:
+  - name: hdi_db
+    properties:
+      TARGET_CONTAINER: ~{hdi-container-name}
+  - name: MYBRT
+resources:
+- name: hdi_db
+  type: com.sap.xs.hdi-container
+  properties:
+    hdi-container-name: ${service-name}
+- name: MYBRT
+  type: org.cloudfoundry.existing-service
