@@ -10,5 +10,17 @@
       "object": "SAGBOOKDAYS",
       "schema": "SFLIGHT"
     }
+  },
+  "com.sap::SFLIGHT": {
+    "target": {
+      "object": "SFLIGHT",
+      "schema": "SFLIGHT"
+    }
+  },
+  "com.sap::SFLIMEAL": {
+    "target": {
+      "object": "SFLIMEAL",
+      "schema": "SFLIGHT"
+    }
   }
 }
